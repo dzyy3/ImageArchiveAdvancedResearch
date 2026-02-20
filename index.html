@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Archive — Conceptual Network</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Image Archive</h1>
+    <p class="tagline">A living idea web</p>
+    <div class="filter-bar" id="filterBar">
+      <span class="filter-label">Filter by tag:</span>
+      <button type="button" class="filter-btn active" data-theme="">All</button>
+      <button type="button" class="filter-btn" data-theme="illustration">Illustration</button>
+      <button type="button" class="filter-btn" data-theme="photography">Photography</button>
+      <button type="button" class="filter-btn" data-theme="body">Body</button>
+      <button type="button" class="filter-btn" data-theme="space">Space</button>
+      <button type="button" class="filter-btn" data-theme="technology">Technology</button>
+      <button type="button" class="filter-btn" data-theme="internet">Internet</button>
+      <button type="button" class="filter-btn" data-theme="collage">Collage</button>
+      <button type="button" class="filter-btn" data-theme="vaporware">Vaporware</button>
+      <button type="button" class="filter-btn" data-theme="diagram">Diagram</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="graph-wrapper" id="graphWrapper">
+      <svg id="graphSvg" aria-label="Conceptual network graph of image nodes"></svg>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

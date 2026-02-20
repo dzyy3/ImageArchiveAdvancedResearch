@@ -1,0 +1,9 @@
+# OS
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*~

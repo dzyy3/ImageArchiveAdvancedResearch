@@ -1,0 +1,180 @@
+/* ============================================
+   Image Archive — Conceptual Network
+   Deep navy, blue connective lines, soft UI
+   ============================================ */
+
+:root {
+  --bg: #0a0e17;
+  --bg-nav: #0d1220;
+  --line: #3A86FF;
+  --line-hover: #6ba3ff;
+  --line-dim: rgba(58, 134, 255, 0.25);
+  --text: #e8ecf4;
+  --text-muted: #8a9ab0;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --radius: 8px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --node-size: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Header ---- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 1.5rem;
+  background: var(--bg-nav);
+  border-bottom: 1px solid rgba(58, 134, 255, 0.15);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.tagline {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.filter-bar {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-right: 0.25rem;
+}
+
+.filter-btn {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(58, 134, 255, 0.3);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.filter-btn.active {
+  background: rgba(58, 134, 255, 0.2);
+  color: var(--line-hover);
+  border-color: var(--line);
+}
+
+/* ---- Main / Graph ---- */
+.main {
+  padding-top: 140px;
+  min-height: 100vh;
+}
+
+.graph-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  overflow: hidden;
+}
+
+#graphSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 800px;
+}
+
+/* Node group (g) — positioning handled by D3 */
+.node {
+  cursor: pointer;
+  transition: transform 0.25s var(--ease);
+}
+
+.node image {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  transition: filter 0.2s var(--ease);
+}
+
+.node:hover image {
+  filter: drop-shadow(0 6px 20px rgba(58, 134, 255, 0.3));
+}
+
+.node.node-hovered image {
+  filter: drop-shadow(0 6px 24px rgba(58, 134, 255, 0.4));
+}
+
+.node.node-connected image {
+  filter: drop-shadow(0 2px 12px rgba(58, 134, 255, 0.25));
+}
+
+.node.dragging {
+  cursor: grabbing;
+}
+
+/* Link lines — default state */
+.link {
+  fill: none;
+  stroke: var(--line);
+  stroke-opacity: 0.5;
+  stroke-width: 1.5;
+  transition: stroke-opacity 0.2s var(--ease), stroke-width 0.2s var(--ease);
+}
+
+.link.hovered {
+  stroke: var(--line-hover);
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+.link.dimmed {
+  stroke-opacity: 0.15;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+
+  .filter-bar {
+    margin-top: 0.5rem;
+  }
+
+  .main {
+    padding-top: 160px;
+  }
+}
